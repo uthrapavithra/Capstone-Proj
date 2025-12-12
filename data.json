@@ -1,0 +1,577 @@
+{
+  "species": [
+    {
+      "id": "sp1",
+      "common_name": "Bull thistle",
+      "scientific_name": "Cirsium vulgare",
+      "family": "Asteraceae",
+      "description": "A biennial thistle forming a large spiny rosette the first year and a tall, winged, spiny flowering stem the second year, with purple flower heads.",
+      "traits": {
+        "flower_color": "purple",
+        "flower_posture": "upright",
+        "bract_type": "spine-tipped, spiny wings on stem",
+        "rosette_present": true,
+        "leaf_features": "deeply lobed, spiny leaves with coarse hairs and prickles on upper and lower surfaces",
+        "stem_features": "erect, branching stems with prominent spiny wings and coarse hairs",
+        "habitat": "disturbed pastures, overgrazed rangelands, roadsides, logged areas, open sunny sites"
+      }
+    },
+    {
+      "id": "sp2",
+      "common_name": "Musk thistle",
+      "scientific_name": "Carduus nutans",
+      "family": "Asteraceae",
+      "description": "A biennial or winter annual thistle with large nodding purple flower heads and spiny-winged stems, reproducing only by seed.",
+      "traits": {
+        "flower_color": "purple",
+        "flower_posture": "nodding",
+        "bract_type": "spine-tipped, overlapping bracts beneath flower heads",
+        "rosette_present": true,
+        "leaf_features": "sharply lobed leaves with spines on the margins and pale midrib, often forming large rosettes",
+        "stem_features": "robust, winged stems with spiny ridges, usually unbranched below flower clusters",
+        "habitat": "pastures, rangeland, roadsides, waste areas, disturbed soils with full sun"
+      }
+    },
+    {
+      "id": "sp3",
+      "common_name": "Canada thistle",
+      "scientific_name": "Cirsium arvense",
+      "family": "Asteraceae",
+      "description": "A creeping perennial thistle that spreads aggressively by rhizomes and seed, with small purple flower heads and spiny, deeply lobed leaves.",
+      "traits": {
+        "flower_color": "purple to pink, occasionally white",
+        "flower_posture": "upright, clustered",
+        "bract_type": "relatively spineless to weakly spined bracts, smaller heads than many thistles",
+        "rosette_present": true,
+        "leaf_features": "deeply lobed, spiny-margined leaves, often somewhat glabrous to slightly hairy",
+        "stem_features": "erect, branching stems typically without wide spiny wings, arising from creeping roots",
+        "habitat": "cropland, pastures, rangeland, roadsides, field edges, disturbed and perennial cropping systems"
+      }
+    },
+    {
+      "id": "sp4",
+      "common_name": "Diffuse knapweed",
+      "scientific_name": "Centaurea diffusa",
+      "family": "Asteraceae",
+      "description": "A non-native biennial or short-lived perennial forb that forms a rosette and then bolts into a bushy plant with white to pink flower heads and spiny bracts.",
+      "traits": {
+        "flower_color": "white to pink",
+        "flower_posture": "upright",
+        "bract_type": "spiny, comb-like bracts with terminal spines forming a star-shaped head",
+        "rosette_present": true,
+        "leaf_features": "highly divided, gray-green leaves in rosette; upper leaves smaller and less divided",
+        "stem_features": "rigid, branching stems, often giving a tumbleweed form when dry",
+        "habitat": "dry rangeland, roadsides, gravelly soils, disturbed open sites"
+      }
+    },
+    {
+      "id": "sp5",
+      "common_name": "Spotted knapweed",
+      "scientific_name": "Centaurea stoebe",
+      "family": "Asteraceae",
+      "description": "A short-lived perennial or biennial forb with slender, upright stems and pink to purple flower heads with black-tipped bracts.",
+      "traits": {
+        "flower_color": "pink to purple",
+        "flower_posture": "upright",
+        "bract_type": "black-tipped, spotted involucral bracts",
+        "rosette_present": true,
+        "leaf_features": "deeply divided basal leaves, upper leaves narrower and less divided",
+        "stem_features": "erect, branching stems, 30–150 cm tall, often forming dense stands",
+        "habitat": "rangeland, roadsides, gravelly or sandy soils, disturbed pastures and rights-of-way"
+      }
+    },
+    {
+      "id": "sp6",
+      "common_name": "Russian knapweed",
+      "scientific_name": "Acroptilon repens",
+      "family": "Asteraceae",
+      "description": "A long-lived, deep-rooted creeping perennial forb that forms dense colonies from spreading roots, with lavender to pink flower heads.",
+      "traits": {
+        "flower_color": "lavender to pink",
+        "flower_posture": "upright",
+        "bract_type": "papery bracts with rounded, slightly fringed tips",
+        "rosette_present": true,
+        "leaf_features": "lower leaves lobed, upper leaves narrower and less lobed, gray-green foliage",
+        "stem_features": "erect, many-branched stems, somewhat woody at the base, 30–90 cm tall",
+        "habitat": "irrigated pastures, roadsides, field margins, disturbed rangeland and riparian benches"
+      }
+    },
+    {
+      "id": "sp7",
+      "common_name": "Leafy spurge",
+      "scientific_name": "Euphorbia esula",
+      "family": "Euphorbiaceae",
+      "description": "A deep-rooted perennial weed with milky latex sap, numerous stems, and yellow-green flowering bracts that form conspicuous clusters.",
+      "traits": {
+        "flower_color": "yellow-green (showy bracts)",
+        "flower_posture": "upright clusters",
+        "bract_type": "yellow-green heart-shaped bracts below small true flowers",
+        "rosette_present": false,
+        "leaf_features": "narrow, linear to lanceolate leaves that exude white latex when broken",
+        "stem_features": "multiple erect stems from a woody crown, 30–90 cm tall, often forming dense patches",
+        "habitat": "pastures, prairies, roadsides, riparian benches, dry to moderately moist open sites"
+      }
+    },
+    {
+      "id": "sp8",
+      "common_name": "Yellow starthistle",
+      "scientific_name": "Centaurea solstitialis",
+      "family": "Asteraceae",
+      "description": "A winter annual forb forming a rosette and then a branched, winged stem with bright yellow flower heads armed with sharp straw-colored spines.",
+      "traits": {
+        "flower_color": "yellow",
+        "flower_posture": "upright",
+        "bract_type": "involucral bracts with long straw-colored spines",
+        "rosette_present": true,
+        "leaf_features": "basal rosette leaves are lobed and non-spiny; upper leaves narrow and extend down the stem forming wings",
+        "stem_features": "erect, winged stems covered in fine hairs, 30–90 cm tall",
+        "habitat": "annual grasslands, roadsides, disturbed rangelands and waste areas in Mediterranean-type climates"
+      }
+    },
+    {
+      "id": "sp9",
+      "common_name": "Saltcedar",
+      "scientific_name": "Tamarix ramosissima",
+      "family": "Tamaricaceae",
+      "description": "A deciduous to evergreen shrub or small tree with feathery branches, scale-like leaves, and pink flower spikes, invading riparian corridors and saline soils.",
+      "traits": {
+        "flower_color": "pink to white",
+        "flower_posture": "upright spikes",
+        "bract_type": "small scale-like floral bracts along spikes",
+        "rosette_present": false,
+        "leaf_features": "tiny, scale-like leaves closely appressed to slender branches, often salt-encrusted",
+        "stem_features": "multi-stemmed shrub or small tree, reddish-brown young bark, 1.5–6 m tall",
+        "habitat": "riparian areas, streambanks, reservoir margins, saline or seasonally saturated soils"
+      }
+    },
+    {
+      "id": "sp10",
+      "common_name": "Field bindweed",
+      "scientific_name": "Convolvulus arvensis",
+      "family": "Convolvulaceae",
+      "description": "A perennial, twining vine with extensive deep root systems, arrow-shaped leaves, and white to pink funnel-shaped flowers.",
+      "traits": {
+        "flower_color": "white to pink",
+        "flower_posture": "upright on short stalks, supported by twining stems",
+        "bract_type": "small bracts on flower stalks away from the calyx",
+        "rosette_present": false,
+        "leaf_features": "arrowhead-shaped to triangular leaves with pointed tips and basal lobes",
+        "stem_features": "slender, twining or trailing stems that climb or mat over vegetation and soil",
+        "habitat": "cropland, gardens, roadsides, orchards, vineyards, disturbed soils and perennial systems"
+      }
+    }
+  ],
+
+  "lifecycle_info": [
+    {
+      "species_id": "sp1",
+      "lifecycle_type": "biennial",
+      "growth_stage": "rosette first year; bolting, flowering and seed set second year",
+      "typical_timing": "rosettes form in spring or fall; bolting and flowering from late spring through summer"
+    },
+    {
+      "species_id": "sp2",
+      "lifecycle_type": "biennial or winter annual",
+      "growth_stage": "rosette then bolting, flowering and senescence",
+      "typical_timing": "seedlings or rosettes establish in fall or early spring; bolting and flowering from late spring to mid-summer"
+    },
+    {
+      "species_id": "sp3",
+      "lifecycle_type": "perennial",
+      "growth_stage": "vegetative shoots from roots, bud to flowering, seed set and regrowth",
+      "typical_timing": "shoots emerge in spring; bud and flowering from late spring to mid-summer; regrowth from buds continues through growing season"
+    },
+    {
+      "species_id": "sp4",
+      "lifecycle_type": "biennial to short-lived perennial",
+      "growth_stage": "rosette then bolting, flowering and seed production",
+      "typical_timing": "rosettes form in fall or early spring; bolting and flowering from late spring to summer; seed dispersal mid- to late summer"
+    },
+    {
+      "species_id": "sp5",
+      "lifecycle_type": "short-lived perennial or biennial",
+      "growth_stage": "rosette, bolting, flowering and seed set",
+      "typical_timing": "rosettes overwinter; bolting and flowering from early to late summer; seed production mid- to late summer"
+    },
+    {
+      "species_id": "sp6",
+      "lifecycle_type": "perennial",
+      "growth_stage": "shoot emergence from roots, bud and flowering stages, seed set",
+      "typical_timing": "shoots emerge in spring; flowering from early to mid-summer; top growth senesces in late summer to fall while roots persist"
+    },
+    {
+      "species_id": "sp7",
+      "lifecycle_type": "perennial",
+      "growth_stage": "shoot emergence, flowering, seed production, root bud renewal",
+      "typical_timing": "shoots emerge in spring; yellow-green flowering bracts from late spring through summer; seed set mid- to late summer"
+    },
+    {
+      "species_id": "sp8",
+      "lifecycle_type": "annual (winter annual habit)",
+      "growth_stage": "seedling and rosette, bolting, flowering and seed production",
+      "typical_timing": "seedlings and rosettes establish in fall or early spring; bolting and flowering from late spring through summer; seed dispersal mid- to late summer"
+    },
+    {
+      "species_id": "sp9",
+      "lifecycle_type": "perennial shrub or small tree",
+      "growth_stage": "bud break and shoot growth, flowering, seed production and vegetative spread",
+      "typical_timing": "leaf-out and shoot growth in spring; flowering late spring to summer; seed production and continued vegetative growth through late summer"
+    },
+    {
+      "species_id": "sp10",
+      "lifecycle_type": "perennial vine",
+      "growth_stage": "shoot emergence from roots, vegetative twining growth, flowering and seed set",
+      "typical_timing": "shoots emerge in spring; vigorous vegetative growth throughout growing season; flowering from late spring through summer with repeated flushes"
+    }
+  ],
+
+  "control_methods": [
+    {
+      "species_id": "sp1",
+      "method_type": "mechanical",
+      "description": "Hand-pull or dig rosettes and bolted plants, removing as much of the taproot as possible before seed heads form.",
+      "timing_window": "rosette to early bolt stage in spring or fall, before flowering",
+      "notes": "Wear gloves to avoid spines; repeat for several years to deplete seed bank.",
+      "effectiveness_constraints": "Less effective on large infestations or once seed heads have formed; soil disturbance can stimulate new germination."
+    },
+    {
+      "species_id": "sp1",
+      "method_type": "chemical",
+      "description": "Apply selective broadleaf herbicides to actively growing rosettes or bolting plants.",
+      "timing_window": "fall or early spring at rosette stage, or early bolt before bud stage",
+      "notes": "Follow local recommendations for labeled herbicides and rates; avoid drift onto desirable broadleaf species.",
+      "effectiveness_constraints": "May require retreatment over multiple years due to new seedlings from seed bank."
+    },
+    {
+      "species_id": "sp1",
+      "method_type": "biological",
+      "description": "Use seedhead gall flies or other approved biocontrol agents to reduce seed production.",
+      "timing_window": "agents establish over several seasons; no single precise treatment window",
+      "notes": "Best used as part of an integrated program with other control methods.",
+      "effectiveness_constraints": "Biocontrol alone rarely eradicates infestations; response may take years."
+    },
+
+    {
+      "species_id": "sp2",
+      "method_type": "mechanical",
+      "description": "Cut or mow musk thistle plants below the lowest leaf just before or at early flowering to prevent seed production.",
+      "timing_window": "bud to early flowering stage in late spring to early summer",
+      "notes": "Remove or destroy cut flower heads to prevent late seed maturation.",
+      "effectiveness_constraints": "Regrowth can occur from cut stems if done too early; repeated cutting may be required."
+    },
+    {
+      "species_id": "sp2",
+      "method_type": "chemical",
+      "description": "Apply systemic herbicides to rosettes in fall or early spring for best control.",
+      "timing_window": "fall or early spring at rosette stage before bolting",
+      "notes": "Target actively growing plants; avoid applications after flowering begins.",
+      "effectiveness_constraints": "Plants treated after onset of flowering may still produce viable seed."
+    },
+    {
+      "species_id": "sp2",
+      "method_type": "biological",
+      "description": "Introduce musk thistle weevils or other approved agents that feed on seeds or crowns.",
+      "timing_window": "biocontrol agents establish over seasons; release timing coordinated with local programs",
+      "notes": "Useful for long-term suppression in large, difficult-to-treat areas.",
+      "effectiveness_constraints": "Does not provide rapid control; must be integrated with other methods."
+    },
+
+    {
+      "species_id": "sp3",
+      "method_type": "mechanical",
+      "description": "Repeated mowing or cultivation to deplete root reserves and prevent seed set.",
+      "timing_window": "throughout growing season, with cuts timed at bud to early flower stage",
+      "notes": "Combine with competitive re-vegetation; avoid infrequent tillage that can spread roots.",
+      "effectiveness_constraints": "Improper or infrequent cultivation can worsen infestations by spreading root fragments."
+    },
+    {
+      "species_id": "sp3",
+      "method_type": "chemical",
+      "description": "Apply systemic herbicides to actively growing shoots when plants are at bud to early flower stage or in fall regrowth.",
+      "timing_window": "late spring to early summer at bud/early flower, or fall on regrowth",
+      "notes": "Use as part of an integrated program with mechanical and cultural practices.",
+      "effectiveness_constraints": "Single applications rarely eradicate; multiple years of treatment are typically needed."
+    },
+    {
+      "species_id": "sp3",
+      "method_type": "cultural",
+      "description": "Increase competition from desirable perennial grasses through proper grazing and fertilization.",
+      "timing_window": "ongoing grazing and pasture management throughout the growing season",
+      "notes": "Healthy, competitive vegetation suppresses Canada thistle emergence and spread.",
+      "effectiveness_constraints": "Alone may not reduce heavy infestations; best in combination with other methods."
+    },
+
+    {
+      "species_id": "sp4",
+      "method_type": "mechanical",
+      "description": "Hand-pull or dig plants, removing entire crown and as much root as possible before seed set.",
+      "timing_window": "rosette to early bolt stage, or before flowering in late spring/early summer",
+      "notes": "Effective on small patches; repeat for several years to exhaust the seed bank.",
+      "effectiveness_constraints": "Labor-intensive and less feasible on large or rocky infestations."
+    },
+    {
+      "species_id": "sp4",
+      "method_type": "cultural",
+      "description": "Use grazing (e.g., sheep or goats) and maintain dense perennial grass cover to suppress establishment.",
+      "timing_window": "target grazing during bolting to early flowering before sharp spines harden",
+      "notes": "Avoid overgrazing desirable species; rotate livestock appropriately.",
+      "effectiveness_constraints": "Grazing alone will not eliminate diffuse knapweed; best used with other tools."
+    },
+    {
+      "species_id": "sp4",
+      "method_type": "chemical",
+      "description": "Apply selective herbicides to rosettes or actively growing bolted plants.",
+      "timing_window": "spring or fall at rosette stage, or early bolt before flowering",
+      "notes": "Follow local label recommendations; treat regrowth as needed.",
+      "effectiveness_constraints": "Multiple years of follow-up treating seedlings and missed plants are typically required."
+    },
+
+    {
+      "species_id": "sp5",
+      "method_type": "mechanical",
+      "description": "Mowing or cutting can reduce seed production if timed before flowering but is rarely sufficient alone.",
+      "timing_window": "bud to early flowering stage in early to mid-summer",
+      "notes": "Combine with reseeding of perennial grasses to fill gaps.",
+      "effectiveness_constraints": "Plants often regrow and flower again after mowing; repeated operations needed."
+    },
+    {
+      "species_id": "sp5",
+      "method_type": "chemical",
+      "description": "Use selective herbicides on rosettes or bolting plants as part of an integrated program.",
+      "timing_window": "spring or fall rosette stage, or early bolt before bud stage",
+      "notes": "Most effective when followed by seeding competitive vegetation.",
+      "effectiveness_constraints": "Single treatments rarely provide long-term control without revegetation."
+    },
+    {
+      "species_id": "sp5",
+      "method_type": "cultural",
+      "description": "Establish and maintain vigorous perennial grasses or other desirable vegetation.",
+      "timing_window": "revegetation after control treatments; ongoing management",
+      "notes": "Competitive stands reduce knapweed recruitment from seed.",
+      "effectiveness_constraints": "Requires good site preparation and may take several seasons to fully establish."
+    },
+
+    {
+      "species_id": "sp6",
+      "method_type": "mechanical",
+      "description": "Tillage or hand removal is often ineffective alone due to deep, spreading roots and can spread the infestation.",
+      "timing_window": "if used, repeated through growing season targeting new shoots",
+      "notes": "Generally not recommended as a primary control on established patches.",
+      "effectiveness_constraints": "Root fragments readily resprout; may expand the infested area."
+    },
+    {
+      "species_id": "sp6",
+      "method_type": "chemical",
+      "description": "Apply systemic herbicides to actively growing Russian knapweed when plants are flowering or in late bud.",
+      "timing_window": "late spring to early summer at bud to flowering, or fall regrowth where recommended",
+      "notes": "Combine with competitive revegetation following control.",
+      "effectiveness_constraints": "Requires multi-year treatments because of persistent roots and seed bank."
+    },
+    {
+      "species_id": "sp6",
+      "method_type": "cultural",
+      "description": "Establish competitive perennial grasses and avoid repeated disturbance that favors knapweed.",
+      "timing_window": "following herbicide treatments and site preparation",
+      "notes": "Long-term suppression depends on maintaining desirable vegetation.",
+      "effectiveness_constraints": "Slow to implement; does not quickly reduce dense, established stands without other control."
+    },
+
+    {
+      "species_id": "sp7",
+      "method_type": "biological",
+      "description": "Release leafy spurge flea beetles (Aphthona spp.) that feed on roots and foliage.",
+      "timing_window": "release adults in early to mid-summer according to local biocontrol program guidance",
+      "notes": "Highly effective in many areas when beetle populations build to high densities.",
+      "effectiveness_constraints": "Response may take several years; performance varies with site conditions."
+    },
+    {
+      "species_id": "sp7",
+      "method_type": "chemical",
+      "description": "Apply systemic herbicides to leafy spurge during active growth.",
+      "timing_window": "late spring to early summer at early flowering or fall regrowth as per label",
+      "notes": "Use in combination with biocontrol and cultural measures for best long-term control.",
+      "effectiveness_constraints": "Repeated applications often required because of deep root system and seed bank."
+    },
+    {
+      "species_id": "sp7",
+      "method_type": "cultural",
+      "description": "Use targeted grazing (e.g., sheep or goats) to suppress aboveground growth and reduce seed production.",
+      "timing_window": "grazing during bolting to early flowering stages, avoiding overuse of desirable species",
+      "notes": "Helps reduce vigor and seed production but does not kill root system.",
+      "effectiveness_constraints": "Must be combined with other methods for substantial population decline."
+    },
+
+    {
+      "species_id": "sp8",
+      "method_type": "mechanical",
+      "description": "Mow or hand-cut plants at the early bud to early flowering stage before viable seed is produced.",
+      "timing_window": "early to mid-summer at bud to early flowering stage",
+      "notes": "Multiple mowings may be required in a season to prevent regrowth from flowering.",
+      "effectiveness_constraints": "Late mowing after seeds mature is ineffective and can disperse seed."
+    },
+    {
+      "species_id": "sp8",
+      "method_type": "chemical",
+      "description": "Apply selective herbicides to rosettes or bolting plants according to label directions.",
+      "timing_window": "fall or early spring at rosette stage, or early bolt before spines harden",
+      "notes": "Often combined with seeding of desirable species to restore infested sites.",
+      "effectiveness_constraints": "Multiple years of treatment may be needed due to persistent seed bank."
+    },
+    {
+      "species_id": "sp8",
+      "method_type": "cultural",
+      "description": "Manage grazing and reseed with competitive grasses to reduce bare ground and suppress germination.",
+      "timing_window": "ongoing grazing management; reseeding in suitable seasons (fall or early spring)",
+      "notes": "Reduces opportunities for yellow starthistle establishment.",
+      "effectiveness_constraints": "May not significantly reduce dense stands without direct control treatments."
+    },
+
+    {
+      "species_id": "sp9",
+      "method_type": "mechanical",
+      "description": "Cut or bulldoze shrubs and remove aboveground biomass, followed by treatment of resprouts.",
+      "timing_window": "late summer to fall when access is feasible and before seed dispersal",
+      "notes": "Often combined with herbicide application to cut stumps or regrowth.",
+      "effectiveness_constraints": "Mechanical removal alone usually results in vigorous resprouting from roots."
+    },
+    {
+      "species_id": "sp9",
+      "method_type": "chemical",
+      "description": "Apply systemic herbicides as foliar sprays or to cut stumps on actively growing plants.",
+      "timing_window": "mid- to late-summer when plants are actively transpiring; cut-stump treatments shortly after cutting",
+      "notes": "Necessary to follow label guidance, especially near water; may require multiple years of retreatment.",
+      "effectiveness_constraints": "Root reserves and seed bank can support regrowth; limited options near sensitive riparian habitats."
+    },
+    {
+      "species_id": "sp9",
+      "method_type": "biological",
+      "description": "Use approved biocontrol insects where available to stress plants and reduce vigor.",
+      "timing_window": "release schedules determined by local biocontrol programs",
+      "notes": "Intended as part of long-term integrated management.",
+      "effectiveness_constraints": "Biocontrol agents may not completely remove saltcedar and are influenced by climate and site conditions."
+    },
+
+    {
+      "species_id": "sp10",
+      "method_type": "mechanical",
+      "description": "Repeated tillage, digging, or hand-pulling to exhaust root reserves, removing as much root as possible.",
+      "timing_window": "throughout growing season at 10–14 day intervals where practical",
+      "notes": "More feasible in small areas; pulling is easiest in moist soil.",
+      "effectiveness_constraints": "Root fragments readily resprout; long-term, consistent effort is required."
+    },
+    {
+      "species_id": "sp10",
+      "method_type": "cultural",
+      "description": "Use mulches or dense competitive crops to shade bindweed and reduce vigor.",
+      "timing_window": "apply mulches in early growing season; maintain competitive vegetation continuously",
+      "notes": "Mulch must be thick and maintained; competitive crops reduce but rarely eliminate bindweed.",
+      "effectiveness_constraints": "Does not eradicate deep roots; often combined with other control methods."
+    },
+    {
+      "species_id": "sp10",
+      "method_type": "chemical",
+      "description": "Apply systemic herbicides when bindweed is actively growing and at or near flowering to maximize translocation to roots.",
+      "timing_window": "late spring through summer during vigorous growth and flowering",
+      "notes": "Spot-treat to minimize injury to desirable plants; follow label precautions.",
+      "effectiveness_constraints": "Multiple years of treatment usually required due to deep, extensive root systems and seed bank."
+    }
+  ],
+
+  "identification_rules": [
+    {
+      "species_id": "sp1",
+      "conditions": [
+        { "trait": "flower_color", "value": "purple" },
+        { "trait": "flower_posture", "value": "upright" },
+        { "trait": "bract_type", "value": "spine-tipped, spiny wings on stem" },
+        { "trait": "rosette_present", "value": "true" }
+      ],
+      "confidence_score": 0.9
+    },
+    {
+      "species_id": "sp2",
+      "conditions": [
+        { "trait": "flower_color", "value": "purple" },
+        { "trait": "flower_posture", "value": "nodding" },
+        { "trait": "bract_type", "value": "spine-tipped, overlapping bracts beneath flower heads" },
+        { "trait": "rosette_present", "value": "true" }
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "species_id": "sp3",
+      "conditions": [
+        { "trait": "flower_color", "value": "purple to pink" },
+        { "trait": "flower_posture", "value": "upright, clustered" },
+        { "trait": "bract_type", "value": "relatively spineless bracts, small heads" },
+        { "trait": "stem_features", "value": "branching stems without wide spiny wings from creeping roots" }
+      ],
+      "confidence_score": 0.9
+    },
+    {
+      "species_id": "sp4",
+      "conditions": [
+        { "trait": "flower_color", "value": "white to pink" },
+        { "trait": "bract_type", "value": "spiny, comb-like bracts with terminal spines" },
+        { "trait": "leaf_features", "value": "highly divided gray-green rosette leaves" },
+        { "trait": "growth_form", "value": "bushy plant that can tumble when dry" }
+      ],
+      "confidence_score": 0.88
+    },
+    {
+      "species_id": "sp5",
+      "conditions": [
+        { "trait": "flower_color", "value": "pink to purple" },
+        { "trait": "bract_type", "value": "black-tipped, spotted bracts" },
+        { "trait": "leaf_features", "value": "deeply divided basal leaves with narrower upper leaves" }
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "species_id": "sp6",
+      "conditions": [
+        { "trait": "flower_color", "value": "lavender to pink" },
+        { "trait": "growth_form", "value": "dense colonies from creeping roots" },
+        { "trait": "leaf_features", "value": "gray-green leaves, lower leaves lobed" }
+      ],
+      "confidence_score": 0.9
+    },
+    {
+      "species_id": "sp7",
+      "conditions": [
+        { "trait": "flower_color", "value": "yellow-green bracts" },
+        { "trait": "leaf_features", "value": "narrow leaves with milky latex" },
+        { "trait": "stem_features", "value": "multiple erect stems forming dense patches" }
+      ],
+      "confidence_score": 0.93
+    },
+    {
+      "species_id": "sp8",
+      "conditions": [
+        { "trait": "flower_color", "value": "bright yellow" },
+        { "trait": "bract_type", "value": "long straw-colored spines on flower heads" },
+        { "trait": "rosette_present", "value": "true" },
+        { "trait": "stem_features", "value": "winged stems with white hairs" }
+      ],
+      "confidence_score": 0.96
+    },
+    {
+      "species_id": "sp9",
+      "conditions": [
+        { "trait": "flower_color", "value": "pink to white" },
+        { "trait": "leaf_features", "value": "tiny scale-like leaves on feathery twigs" },
+        { "trait": "habitat", "value": "riparian, saline or seasonally saturated soils" }
+      ],
+      "confidence_score": 0.94
+    },
+    {
+      "species_id": "sp10",
+      "conditions": [
+        { "trait": "flower_color", "value": "white to pink funnel-shaped flowers" },
+        { "trait": "stem_features", "value": "twining or trailing vine stems" },
+        { "trait": "leaf_features", "value": "arrowhead-shaped leaves with basal lobes" }
+      ],
+      "confidence_score": 0.95
+    }
+  ]
+}
