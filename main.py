@@ -25,7 +25,7 @@ from pydantic import BaseModel, Field, field_validator
 # from emailer import send_email
 
 # from converter import extract_text_from_pdf_bytes
-# from ai import evaluate_resume_with_ai , review_application , ingest_resume, get_vector_store , get_recommendation
+from ai import get_suggestion
 # from models import JobApplicationAIEvaluation
 from braintrust import init_logger, load_prompt
 from braintrust.wrappers.openai import BraintrustTracingProcessor
@@ -121,7 +121,7 @@ class IdentifyWeedForm(BaseModel):
    
 ##identify weed and give suggestions
 
-@app.post("/api/indentify-weed")
+@app.post("/api/identify-weed")
 async def identify_weed(plant_description:Annotated[IdentifyWeedForm,Form()]):
-    return True
-    return review_application(job_description.description)
+    #return True
+    return get_suggestion(plant_description.description)
