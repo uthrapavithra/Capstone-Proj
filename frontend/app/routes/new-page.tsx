@@ -13,22 +13,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Input } from "~/components/ui/input";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
-  const incoming = await request.formData();
-
-  const description = String(incoming.get("description") ?? "");
-  const concern = String(incoming.get("concern") ?? "");
-  const image = incoming.get("image"); // File | null
-
-  const formData = new FormData();
-  formData.append("description", description);
-  formData.append("concern", concern);
-
-  // Only append if a real file is selected
-  if (image instanceof File && image.name && image.size > 0) {
-    formData.append("image", image);
-  }
-  const formvalues = Object.fromEntries(formData)
-  console.log("formm---",formvalues)
+  const formData = await request.formData();
 
   const response = await fetch("/api/identify-weed", {
     method: "POST",
@@ -179,19 +164,22 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
       <div className="mx-auto max-w-6xl px-4 py-8">
         <Form method="post" encType="multipart/form-data">
           <FieldGroup>
-           
+            {/* Keeping FieldLegend for semantics, but styling it like a subtle section label */}
+            <FieldLegend className="sr-only">
+              Identify Weed and Suggest Control Methods
+            </FieldLegend>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {/* LEFT: Form */}
               <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between">
-                  
-                  {/* {isLoading && (
+                  <p className="text-sm font-medium text-neutral-900">New query</p>
+                  {isLoading && (
                     <div className="flex items-center gap-2 text-xs text-neutral-500">
                       <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-neutral-300 border-t-transparent" />
                       Processing…
                     </div>
-                  )} */}
+                  )}
                 </div>
 
                 <div className="mt-5 space-y-5">
@@ -205,7 +193,7 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
                       className="min-h-[120px] rounded-2xl border-black/10 bg-neutral-50 focus:bg-white"
                     />
                     <p className="mt-2 text-xs text-neutral-500">
-                      Tip: add location, crop type, and growth stage for better results.
+                      Tip: add location, weed type, and growth stage for better results.
                     </p>
                   </Field>
 
@@ -215,12 +203,13 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
                       id="image"
                       name="image"
                       type="file"
+                      accept="image/*"
                       className="rounded-2xl border-black/10 bg-white"
                     />
                   </Field>
 
                   <Field>
-                    <FieldLabel htmlFor="concern">Select your concern? (optional)</FieldLabel>
+                    <FieldLabel htmlFor="concern">What do you want back? (optional)</FieldLabel>
                     <select
                       id="concern"
                       name="concern"
@@ -250,11 +239,11 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
               {/* RIGHT: Results */}
               <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
                 <p className="text-sm font-medium text-neutral-900">
-                  Identification Results
+                  Results
                 </p>
-                {/* <p className="mt-1 text-sm text-neutral-600">
+                <p className="mt-1 text-sm text-neutral-600">
                   Your identification output will appear here.
-                </p> */}
+                </p>
 
                 <div className="mt-5">
                   {isLoading && (
@@ -266,7 +255,7 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
                     </div>
                   )}
 
-                  {isError && !isLoading &&(
+                  {isError && (
                     <div className="rounded-2xl border border-red-200 bg-red-50 p-4">
                       <p className="text-sm font-medium text-red-700">Error</p>
                       <p className="mt-1 whitespace-pre-wrap text-sm text-red-700">
