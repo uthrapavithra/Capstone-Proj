@@ -9,9 +9,9 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-// import { authMiddleware } from "./middleware";
+import { authMiddleware } from "./middleware";
 
-// export const clientMiddleware : Route.ClientMiddlewareFunction[]=[authMiddleware];
+export const clientMiddleware : Route.ClientMiddlewareFunction[]=[authMiddleware];
 
 
 export default function App() {
