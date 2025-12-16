@@ -1,20 +1,10 @@
 import json
 import os
-from typing import List
-from braintrust import traced
-from langchain_qdrant import QdrantVectorStore
-from openai import OpenAI
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from pydantic import BaseModel
-from qdrant_client import QdrantClient
-from langchain_core.documents import Document
-from qdrant_client.http.models import Distance, VectorParams
 from config import settings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
-from braintrust import init_logger
-from braintrust_langchain import BraintrustCallbackHandler, set_global_handler
 from langchain_core.prompts import PromptTemplate
 # init_logger(project="My Project", api_key=settings.BRAINTRUST_API_KEY)
 
@@ -38,10 +28,11 @@ concern: {concern}
 
 
 The answer should have the below details:
-1.Species name 
+1.Species name - Give the species's common name and scientific name. Provide 2 lines on how it can be identified.
 2.lifecycle_info - Details about type of plant (annual | biennial | perennial), growth stage, timing of growth 
 3.control_methods - Details about how to control (method - mechanical | cultural | biological | chemical),description and notes to control, Timing window and effectiveness constraints, What are the effective weedicides availble in the market and its formulations
 4.confidence_score - Value ranges between 0-1 where 0 is unsure and 1 is very confident with the given asnwer
+5.summary - Summarize the answer based on the given concern in less than 5 lines.
 
 Answer the below question in the given output format. 
 question:
@@ -55,9 +46,10 @@ class Suggesstion(BaseModel):
     lifecycle_info: str
     control_methods: str
     confidence_score: float
+    summary : str
 
 
-#@traced(name = 'Review Job Description')
+
 def get_suggestion(question:str, concern:str , image_url : str):
     
     model = ChatOpenAI(model="gpt-5.1",api_key=settings.OPENAI_API_KEY)
@@ -86,10 +78,7 @@ def get_suggestion(question:str, concern:str , image_url : str):
         suggestion_chain = suggestion_prompt | model | output_parser
         suggestion_output = suggestion_chain.invoke({"question": question , "concern":concern ,"image_data_url":image_url})
     
+    #print(suggestion_output)
 
-
-
-    print(suggestion_output.confidence_score)
-
-    output = Suggesstion(species_name=suggestion_output.species_name,lifecycle_info=suggestion_output.lifecycle_info,control_methods=suggestion_output.control_methods,confidence_score=suggestion_output.confidence_score)
+    output = Suggesstion(species_name=suggestion_output.species_name,lifecycle_info=suggestion_output.lifecycle_info,control_methods=suggestion_output.control_methods,confidence_score=suggestion_output.confidence_score,summary=suggestion_output.summary)
     return output.model_dump_json()

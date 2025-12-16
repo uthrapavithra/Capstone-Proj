@@ -1,10 +1,11 @@
 import { NavLink, Outlet  ,Link, type ClientLoaderFunctionArgs} from "react-router";
 import "./DefaultLayout.css";
 import { userContext } from "~/context";
+import { Button } from "~/components/ui/button";
 
 
 
-export async function clientLoader({context}:ClientLoaderFunctionArgs) {
+export async function clientLoader({params,context}:ClientLoaderFunctionArgs) {
 
   const me = context.get(userContext)
   const isAdmin = me && me.is_admin
@@ -12,21 +13,44 @@ export async function clientLoader({context}:ClientLoaderFunctionArgs) {
   return {isAdmin}
 }
 
-export default function DefaultLayout({loaderData}:any) {
-  const navLinkClass = ({ isActive }) =>
-    isActive ? "nav-link active" : "nav-link";
+export default function DefaultLayout({params,loaderData}:any) {
+ 
 
   return (
     <main className="layout-container">
+      {/* Top Pane */}
       
-      <nav className="navbar">
-        <img src="uploads/job.jpg" width="50" height = "50" ></img>
-        <NavLink to="/" className={navLinkClass}>Home</NavLink>
-        <NavLink to="/job-boards" className={navLinkClass}>JobBoards</NavLink>
-        {loaderData.isAdmin?
-        <NavLink to="/admin-logout" className={navLinkClass}>Logout</NavLink>
-        : <NavLink to="/admin-login" className={navLinkClass}>Login</NavLink>}
-      </nav>
+      <header className="fixed top-0 left-0 w-full z-50
+      flex justify-end items-center
+      px-10 py-4
+      bg-white/100 shadow-md backdrop-blur">
+         
+           {/* { !loaderData.isAdmin && (
+            <div className="flex gap-3">
+            <Button variant="outline" type="button">
+            <Link to="/login">Log In</Link>
+          </Button>
+          <Button variant="outline" type="button">
+            <Link to="/signup">Sign Up</Link>
+          </Button>
+          </div>
+            
+          )}  */}
+          {loaderData.isAdmin &&(
+            <div className="flex gap-3">
+            <Button variant="outline" type="button">
+            <Link to={`/identify-weed/${params.username}`}>Ask the Query</Link>
+          </Button>
+          <Button variant="outline" type="button">
+            <Link to="/signup">Get Past Data</Link>
+          </Button>
+          </div>
+          )}
+          
+        
+      </header>
+      
+      
       <Outlet/>
     </main>
   );

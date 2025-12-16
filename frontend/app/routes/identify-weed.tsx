@@ -1,4 +1,4 @@
-import { Form, Link, useNavigation } from "react-router";
+import { Form, Link, redirect, useNavigation, type ClientLoaderFunctionArgs } from "react-router";
 import type { Route } from "./+types/root";
 import {
   Field,
@@ -8,11 +8,20 @@ import {
 } from "~/components/ui/field";
 import { Button } from "~/components/ui/button";
 import { Textarea } from "~/components/ui/textarea";
-import { List, X } from "lucide-react";
+import { Leaf, List, X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "~/components/ui/input";
+import { userContext } from "~/context";
 
-export async function clientAction({ request }: Route.ClientActionArgs) {
+export async function clientLoader({context}:ClientLoaderFunctionArgs) {
+  const me = context.get(userContext)
+  const isAdmin = me && me.is_admin
+  if (!isAdmin){
+    throw redirect("/home");
+  }
+}
+
+export async function clientAction({ request ,params }: Route.ClientActionArgs) {
   const incoming = await request.formData();
 
   const description = String(incoming.get("description") ?? "");
@@ -27,21 +36,41 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   if (image instanceof File && image.name && image.size > 0) {
     formData.append("image", image);
   }
-  const formvalues = Object.fromEntries(formData)
-  console.log("formm---",formvalues)
+  
 
   const response = await fetch("/api/identify-weed", {
     method: "POST",
     body: formData,
   });
-
+  const raw = await response.json();      
+  const result = typeof raw === "string" ? JSON.parse(raw) : raw;
+  console.log("type:", typeof result);
+  console.log("res====",result.summary)
   if (!response.ok) {
     return {
       error: "Failed to identify plant. Please try again.",
     };
   }
 
-  return await response.json();
+  if (response.ok) {
+
+    
+    if (result?.confidence_score != null) {
+      formData.append("confidence_score", String(result.confidence_score));
+    }
+
+    if (result?.summary != null) {
+      formData.append("summary", String(result.summary));
+    }
+    const formvalues = Object.fromEntries(formData);
+    console.log("formm---",formvalues);
+    const res = await fetch(`/api/add-query/${params.username}`, {
+    method: "POST",
+    body: formData,
+  });
+  }
+
+  return result;
 }
 
 // Helper: turn string/object/array into readable text (not raw JSON blob in the UI)
@@ -70,7 +99,7 @@ function toReadableText(value: unknown): string {
   return String(value);
 }
 
-function MenuDropdown() {
+function MenuDropdown({ username }: { username: string }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -114,14 +143,14 @@ function MenuDropdown() {
 
           <nav className="p-2">
             <Link
-              to="/past-queries"
+              to={`/past-queries/${username}`}
               className="block rounded-xl px-3 py-2 text-sm text-black/80 hover:bg-black/5"
               onClick={() => setOpen(false)}
             >
               Past Queries
             </Link>
             <Link
-              to="/logout"
+              to={`/logout`}
               className="mt-1 block rounded-xl px-3 py-2 text-sm text-black/80 hover:bg-black/5"
               onClick={() => setOpen(false)}
             >
@@ -134,7 +163,7 @@ function MenuDropdown() {
   );
 }
 
-export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
+export default function IdentifyWeedForm({params, actionData }: Route.ComponentProps) {
   const navigation = useNavigation();
   const isLoading =
     navigation.state === "submitting" || navigation.state === "loading";
@@ -155,25 +184,51 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
     : "";
 
   return (
+    // <div className="min-h-[calc(100vh-0px)] bg-gradient-to-b from-neutral-50 via-white to-neutral-50">
+    //   {/* Top header */}
+    //   <div className="mx-auto max-w-6xl px-4 pt-10">
+    //     <div className="flex items-start justify-between gap-4">
+    //       <div>
+    //         <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
+    //           Weed Identification
+    //         </h1>
+            
+    //       </div>
+
+    //       {/* Burger menu (top-right) */}
+    //       <MenuDropdown username={params.username}/>
+    //     </div>
+
+    
+
+    //     <div className="mt-6 h-px bg-black/5" />
+    //   </div>
     <div className="min-h-[calc(100vh-0px)] bg-gradient-to-b from-neutral-50 via-white to-neutral-50">
-      {/* Top header */}
-      <div className="mx-auto max-w-6xl px-4 pt-10">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
-              Weed Identification
-            </h1>
-            <p className="mt-1 text-sm text-neutral-600">
-              Ask a question, optionally upload an image, and get lifecycle + control guidance.
-            </p>
-          </div>
+  {/* Top Pane */}
+  <header className="w-full bg-white shadow-sm">
+    <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+{/*       
+      Top Left: Home Button with Leaf Icon
+      <Button asChild variant="outline" className="rounded-full p-2 mr-4">
+        <Link to="/home" aria-label="Home">
+          <Leaf className="h-5 w-5 " />
+        </Link>
+      </Button> */}
 
-          {/* Burger menu (top-right) */}
-          <MenuDropdown />
-        </div>
+      {/* Page Content */}
+  <div className="px-4 pt-1">
+    <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
+      Weed Identification And Control
+    </h1>
+  </div>
 
-        <div className="mt-6 h-px bg-black/5" />
-      </div>
+      {/* Top Right: Menu */}
+      <MenuDropdown username={params.username} />
+    </div>
+  </header>
+
+  
+
 
       {/* Main content */}
       <div className="mx-auto max-w-6xl px-4 py-8">
@@ -205,7 +260,7 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
                       className="min-h-[120px] rounded-2xl border-black/10 bg-neutral-50 focus:bg-white"
                     />
                     <p className="mt-2 text-xs text-neutral-500">
-                      Tip: add location, crop type, and growth stage for better results.
+                      Tip: add location, weed type, and growth stage for better results.
                     </p>
                   </Field>
 
@@ -220,7 +275,7 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
                   </Field>
 
                   <Field>
-                    <FieldLabel htmlFor="concern">Select your concern? (optional)</FieldLabel>
+                    <FieldLabel htmlFor="concern">Select your concern (optional)</FieldLabel>
                     <select
                       id="concern"
                       name="concern"
@@ -261,7 +316,7 @@ export default function IdentifyWeedForm({ actionData }: Route.ComponentProps) {
                     <div className="rounded-2xl border border-black/5 bg-neutral-50 p-4 text-sm text-neutral-600">
                       <div className="flex items-center gap-3">
                         <div className="h-4 w-4 animate-spin rounded-full border-2 border-neutral-300 border-t-transparent" />
-                        <span>Analyzing and preparing recommendations…</span>
+                        <span>Analyzing and preparing sugesstions..</span>
                       </div>
                     </div>
                   )}
