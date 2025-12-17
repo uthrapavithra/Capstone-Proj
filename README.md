@@ -27,6 +27,11 @@ The generated answers, along with metadata such as confidence score, timestamp, 
 
 ## How to install and run the code:
 1. Clone the latest code from the githib repo (main branch)
+2. Add the below values in .env file:
+    OPENAI_API_KEY=<your openai api key>
+    DATABASE_URL = <your local PostgreSQL DB connection URL>
+    PRODUCTION=false
+
 2. Run from terminal: 
 
     `pip install -r requirements.txt`
