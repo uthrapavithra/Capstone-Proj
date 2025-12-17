@@ -1,5 +1,18 @@
 # Weed Identifier and Control Measures
-`Overview:`
+
+## Problem Statement
+
+Farmers frequently misidentify noxious weeds because many invasive species share similar traits. For example, bull thistle and musk thistle both present with purple flower 
+heads but diAer in lifecycle and bract structure. 
+
+Farmers would like help answering questions like: 
+
+ “I have a weed with Purple flower heads, nodding, spine-tipped bracts, rosette present last fall. Which thistle is this?” 
+
+ To build a Farmer-facing UI for describing observed plant characteristics. 
+The backend will identify the species and retrieve the plant's lifecycle information and necessary control measures.
+
+## Overview
 
 The application follows a clean client–server architecture with a React-based frontend and a FastAPI backend. The frontend, built using React and React Router, is responsible for rendering user interfaces such as Home, Sign Up, Login, Weed Identifier, Past Queries, and Logout pages. It communicates with the backend exclusively through RESTful API calls over HTTP.
 
@@ -7,12 +20,12 @@ The backend is implemented using FastAPI and runs on localhost. It acts as the c
 
 The generated answers, along with metadata such as confidence score, timestamp, and optional image references, are stored in PostgreSQL under a dedicated query table. Users can later retrieve their past queries via a separate API endpoint. This design ensures strong separation of concerns, secure handling of API keys, scalable backend logic, and a responsive frontend experience.
 
-`Architecture Diagram:`
+## Architecture Diagram:
 
 ![overall-architecture](overall-architecture.png)
 
 
-# How to install and run the code:
+## How to install and run the code:
 1. Clone the latest code from the githib repo (main branch)
 2. Run from terminal: 
 
@@ -42,7 +55,7 @@ The generated answers, along with metadata such as confidence score, timestamp, 
 7. When the servers are up and running, the application will be accessible from the browser at http://localhost:5173/home
 
 
-# Sample data set:
+## Sample data set:
 
 
 1. Sign-up and use that username and password to login
@@ -59,7 +72,7 @@ The generated answers, along with metadata such as confidence score, timestamp, 
 
 
 
-# Key decisions and trade-offs while building/designing the application:
+## Key decisions and trade-offs while building/designing the application:
 
 1. **Decision:** To use GPT-5.1 for the analysis task.
 
