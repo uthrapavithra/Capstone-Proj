@@ -1,5 +1,6 @@
 
 
+import json
 from fastapi import BackgroundTasks, Depends, FastAPI, Form, Request, Response,status,Cookie
 from datetime import datetime
 from fastapi.staticfiles import StaticFiles
@@ -49,8 +50,17 @@ async def identify_weed(
         # image_upload = upload_file("images",image.filename,image_contents,image.content_type)
     
     #print("url----",image_url)
-    result = get_suggestion(description,concern,image_url)
-    
+    response = get_suggestion(description,concern,image_url)
+
+    res= json.loads(response)
+
+    conf_score = round((res["confidence_score"]*100),1)
+    print(conf_score)
+
+    res["confidence_score"]=conf_score
+
+    result = json.dumps(res)
+
     return result
 
 class AddWeedData(BaseModel):
@@ -69,9 +79,7 @@ async def add_query(username:str,data:Annotated[AddWeedData,Form()]):
         now = datetime.now()
         created_at = now.strftime("%Y-%m-%d %H:%M:%S")
         if (data.confidence_score):
-            score = float(data.confidence_score)
-            score = round((score*100),1)
-            conf_score = str(score)+"%"
+            conf_score = str(data.confidence_score)+"%"
 
         else:
             conf_score = "null"

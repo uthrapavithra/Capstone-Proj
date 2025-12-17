@@ -176,6 +176,17 @@ export default function IdentifyWeedForm({params, actionData }: Route.ComponentP
   const hasData = Boolean(result && !isError);
 
   const speciesName = hasData ? (result as any).species_name ?? "" : "";
+  const confidenceScore = hasData ? (result as any).confidence_score ?? "" : "";
+
+  const scoreNum =
+  typeof confidenceScore === "number"
+    ? confidenceScore
+    : Number(confidenceScore);
+
+  const lowConfidence = scoreNum !== null && scoreNum < 70;
+
+
+
   const lifecycleText = hasData
     ? toReadableText((result as any).lifecycle_info ?? "")
     : "";
@@ -184,36 +195,11 @@ export default function IdentifyWeedForm({params, actionData }: Route.ComponentP
     : "";
 
   return (
-    // <div className="min-h-[calc(100vh-0px)] bg-gradient-to-b from-neutral-50 via-white to-neutral-50">
-    //   {/* Top header */}
-    //   <div className="mx-auto max-w-6xl px-4 pt-10">
-    //     <div className="flex items-start justify-between gap-4">
-    //       <div>
-    //         <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
-    //           Weed Identification
-    //         </h1>
-            
-    //       </div>
-
-    //       {/* Burger menu (top-right) */}
-    //       <MenuDropdown username={params.username}/>
-    //     </div>
-
-    
-
-    //     <div className="mt-6 h-px bg-black/5" />
-    //   </div>
     <div className="min-h-[calc(100vh-0px)] bg-gradient-to-b from-neutral-50 via-white to-neutral-50">
   {/* Top Pane */}
   <header className="w-full bg-white shadow-sm">
     <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-{/*       
-      Top Left: Home Button with Leaf Icon
-      <Button asChild variant="outline" className="rounded-full p-2 mr-4">
-        <Link to="/home" aria-label="Home">
-          <Leaf className="h-5 w-5 " />
-        </Link>
-      </Button> */}
+
 
       {/* Page Content */}
   <div className="px-4 pt-1">
@@ -330,8 +316,22 @@ export default function IdentifyWeedForm({params, actionData }: Route.ComponentP
                     </div>
                   )}
 
+                  
                   {hasData && (
                     <div className="mt-4 space-y-5">
+                      <div className="rounded-2xl border border-black/5 bg-neutral-50 p-4">
+                          <FieldLabel>Confidence Score of Answer</FieldLabel>
+                          <p className="mt-1 whitespace-pre-wrap text-sm text-neutral-800">
+                            {confidenceScore+"%" || "—"}
+                          </p>
+                          {lowConfidence && (
+                            <p className="mt-2 text-sm font-medium text-red-600">
+                              Try again (Please provide a clearer description or upload an image).
+                            </p>
+                          )}
+                        </div>
+
+
                       {(concern === "None" || concern === "species_name") && (
                         <div className="rounded-2xl border border-black/5 bg-neutral-50 p-4">
                           <FieldLabel>Species name</FieldLabel>
