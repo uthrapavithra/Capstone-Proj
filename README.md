@@ -73,6 +73,12 @@ The generated answers, along with metadata such as confidence score, timestamp, 
 
     Without RAG it might be harder to maintain consistency, but the data required is mostly about weeds, herbicides, best practices which GPT-5.1 is good enough to provide.
 
+3. **Decision:** Integrate a Guardrails-like framework around the OpenAI API to validate and constrain LLM outputs (schema enforcement, safety checks, content filters)
+
+    **Trade-off:**
+    This added architectural complexity, slightly higher latency, and more configuration and maintenance effort.
+    But it improved safety and enforce structured outputs.
+
 2. **Decision:** Use multipart/form-data so the same endpoint can accept text + optional image.
 
     **Trade-off:** Easy for forms and file uploads, but slightly more complex parsing than pure JSON and harder to test with some clients.
@@ -86,5 +92,9 @@ The generated answers, along with metadata such as confidence score, timestamp, 
     **Trade-off:**
     Simple to implement, responsive filtering without extra API endpoints.
     Does not scale well if a user has thousands of queries; might require server-side filtering or pagination later.
+
+6. **Decision:** Use Base64 encoding to convert image/binary data into a text string (e.g., data URL) so it can be sent in JSON / stored or logged more easily.
+
+    **Trade-off:** Using Base64 encoding for simplicity and easy transport of images as text, at the cost of larger payload size and extra encode/decode overhead.
 
 
