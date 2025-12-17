@@ -11,17 +11,29 @@ import { Button } from "~/components/ui/button";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   const formData = await request.formData();
-  await fetch("/api/sign-up", {
+  const res = await fetch("/api/sign-up", {
     method: "POST",
     body: formData,
   });
-  return redirect("/home");
+  if(res.ok){
+    return redirect("/home");
+  }
+
+  return res.ok
+  
 }
 
-export default function SignupForm(_: Route.ComponentProps) {
+export default function SignupForm({actionData}: Route.ComponentProps) {
+    console.log("act---",actionData)
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+        {actionData === false &&(
+            <p className="justify-center mt-1 text-xs text-red-600">Error Signing Up. Try different username</p>
+        )
+
+        }
+        
         {/* Header */}
         <div className="text-center mb-6">
           <h1 className="text-2xl font-semibold text-gray-800">
@@ -71,6 +83,8 @@ export default function SignupForm(_: Route.ComponentProps) {
                 id="password"
                 name="password"
                 type="password"
+                minLength={6}
+                maxLength={20}
                 placeholder="••••••••"
                 required
               />
