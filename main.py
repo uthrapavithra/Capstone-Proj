@@ -4,7 +4,7 @@ import json
 from fastapi import BackgroundTasks, Depends, FastAPI, Form, Request, Response,status,Cookie
 from datetime import datetime
 from fastapi.staticfiles import StaticFiles
-
+from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
 from fastapi.staticfiles import StaticFiles
 from typing import Annotated, Optional
@@ -156,7 +156,7 @@ class SignUp(BaseModel):
    fullname : str 
    email : EmailStr
    username : str = Field (min_length=6,max_length=20)
-   password :str = Field (min_length=8,max_length=20)
+   password :str = Field (min_length=6,max_length=20)
    
 #    @field_validator("password")
 #    @classmethod
@@ -177,19 +177,37 @@ class SignUp(BaseModel):
 
 @app.post("/api/sign-up")
 async def signup(signup:Annotated[SignUp,Form()]):
-    
-    with get_db_session() as session:
-        
-        new_user = User(
-               fullname= signup.fullname,
-               email=signup.email,
-               username=signup.username,
-               password=signup.password
-               )
+    try:
+        with get_db_session() as session:
+            
+            new_user = User(
+                fullname= signup.fullname,
+                email=signup.email,
+                username=signup.username,
+                password=signup.password
+                )
 
-        session.add(new_user)
-        session.commit()
-        session.refresh(new_user)
+            session.add(new_user)
+            session.commit()
+            session.refresh(new_user)
+
+    except IntegrityError as e:
+        if isinstance(e.orig, psycopg.errors.UniqueViolation):
+            # You can inspect e.orig.diag.constraint_name if you want
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail={
+                    "field": "username",
+                    "message": "Username already exists. Please choose another one.",
+                },
+            )
+
+        # For other DB errors, re-raise or wrap generically
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while creating user.",
+        )
+
 
     return {"User added"}
 
