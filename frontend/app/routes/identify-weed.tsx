@@ -251,13 +251,19 @@ export default function IdentifyWeedForm({params, actionData }: Route.ComponentP
                   </Field>
 
                   <Field>
-                    <FieldLabel htmlFor="image">Upload image (optional)</FieldLabel>
+                    <FieldLabel htmlFor="image">Upload image (optional)
+                      <p className="text-xs text-neutral-500">
+                      (.jpg or .png files only)
+                    </p>
+                    </FieldLabel>
+                    
                     <Input
                       id="image"
                       name="image"
                       type="file"
                       className="rounded-2xl border-black/10 bg-white"
                     />
+                    
                   </Field>
 
                   <Field>

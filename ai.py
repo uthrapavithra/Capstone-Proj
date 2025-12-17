@@ -30,9 +30,11 @@ concern: {concern}
 The answer should have the below details:
 1.Species name - Give the species's common name and scientific name. Provide 2 lines on how it can be identified.
 2.lifecycle_info - Details about type of plant (annual | biennial | perennial), growth stage, timing of growth 
-3.control_methods - Details about how to control (method - mechanical | cultural | biological | chemical),description and notes to control, Timing window and effectiveness constraints, What are the effective weedicides availble in the market and its formulations
+3.control_methods - Details about how to control (method - mechanical | cultural | biological | chemical),description and notes to control, Timing window and effectiveness constraints, What are the effective and allowed weedicides availble in the market and its formulations
 4.confidence_score - Value ranges between 0-1 where 0 is unsure and 1 is very confident with the given asnwer
 5.summary - Summarize the answer based on the given concern in less than 5 lines.
+6.disclaimer - Always include a short disclaimer:
+"Always follow local regulations and product labels. Consult a licensed professional for site-specific advice."
 
 Answer the below question in the given output format. 
 question:
@@ -41,14 +43,69 @@ question:
 Output format: {format_instructions}
 """
 
+REVISION_PROMPT = """
+You violated one or more policy requirements:
+- Never recommend banned herbicides: {banned_list}
+- Always include the disclaimer
+- Always include confidence_score and control_methods (non-empty)
+
+Rewrite the previous answer to comply. Remove banned herbicides and replace with safe alternatives
+(e.g., mechanical/cultural/biological methods or compliant herbicides that are not banned).
+Return ONLY in the required output format.
+Previous answer:
+{previous_json}
+
+Output format: {format_instructions}
+"""
+
+
+
+BANNED_HERBICIDES = {
+    "Aluminum Phosphide",
+    "Captafol",
+    "DDT",
+    "Chlorpyriphos",
+    "Carbofuran",
+       
+}
+
+def contains_banned(text: str) -> list[str]:
+    t = (text or "").lower()
+    hits = [h for h in BANNED_HERBICIDES if h in t]
+    return hits
+
+
+
 class Suggesstion(BaseModel):
     species_name : str
     lifecycle_info: str
     control_methods: str
     confidence_score: float
     summary : str
+    disclaimer: str
 
+def validate_guardrails(out: Suggesstion) -> None:
+    # Always include disclaimer
+    if not out.disclaimer or len(out.disclaimer.strip()) < 20:
+        raise ValueError("Missing/too short disclaimer")
 
+    # Always show control methods (non-empty)
+    if not out.control_methods or len(out.control_methods.strip()) < 20:
+        raise ValueError("Missing/too short control_methods")
+
+    # Always show confidence score (range check)
+    if out.confidence_score is None or not (0.0 <= out.confidence_score <= 1.0):
+        raise ValueError("Invalid confidence_score")
+
+    # Never recommend banned herbicides (scan multiple fields)
+    banned_hits = (
+        contains_banned(out.control_methods)
+        + contains_banned(out.summary)
+        + contains_banned(out.lifecycle_info)
+        + contains_banned(out.species_name)
+    )
+    if banned_hits:
+        raise ValueError(f"Banned herbicide mentioned: {sorted(set(banned_hits))}")
 
 def get_suggestion(question:str, concern:str , image_url : str):
     
@@ -80,5 +137,33 @@ def get_suggestion(question:str, concern:str , image_url : str):
     
     #print(suggestion_output)
 
-    output = Suggesstion(species_name=suggestion_output.species_name,lifecycle_info=suggestion_output.lifecycle_info,control_methods=suggestion_output.control_methods,confidence_score=suggestion_output.confidence_score,summary=suggestion_output.summary)
+    output = Suggesstion(species_name=suggestion_output.species_name,lifecycle_info=suggestion_output.lifecycle_info,control_methods=suggestion_output.control_methods,confidence_score=suggestion_output.confidence_score,summary=suggestion_output.summary,disclaimer=getattr(suggestion_output, "disclaimer", ""))
+
+    try:
+        validate_guardrails(output)
+    except Exception as e:
+        # retry once: ask the model to revise
+        revision_parser = PydanticOutputParser(pydantic_object=Suggesstion)
+        revision_prompt = PromptTemplate(
+            template=REVISION_PROMPT,
+            partial_variables={"format_instructions": revision_parser.get_format_instructions()},
+        )
+
+        revision_chain = revision_prompt | model | revision_parser
+        revised = revision_chain.invoke({
+            "previous_json": output.model_dump_json(),
+            "banned_list": ", ".join(sorted(BANNED_HERBICIDES)),
+        })
+
+        output = Suggesstion(**revised.model_dump())
+        validate_guardrails(output)
+
+
+
+
     return output.model_dump_json()
+
+
+
+
+
