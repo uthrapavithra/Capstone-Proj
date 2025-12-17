@@ -27,10 +27,16 @@ The generated answers, along with metadata such as confidence score, timestamp, 
 
 ## How to install and run the code:
 1. Clone the latest code from the githib repo (main branch)
+2. Setup react-router vite-server and python environment in VSCode
 2. Add the below values in .env file:
-    OPENAI_API_KEY=<your openai api key>
-    DATABASE_URL = <your local PostgreSQL DB connection URL>
+
+    ```
+    OPENAI_API_KEY={your openai api key}
+
+    DATABASE_URL = {your local PostgreSQL DB connection URL}
+
     PRODUCTION=false
+    ```
 
 2. Run from terminal: 
 
@@ -42,11 +48,12 @@ The generated answers, along with metadata such as confidence score, timestamp, 
 
 **Alembic commands:**
 
-    `alembic init <directory name>`
+    alembic init <directory name>
 
-    `alembic  revision --autogenerate -m "Add new tables and columns"`
+    alembic  revision --autogenerate -m "Add new tables and columns"
 
-    `alembic upgrade head`
+    alembic upgrade head
+    
 
 5. From the root path of the folder, run the main.py using command: 
 
