@@ -6,6 +6,9 @@ from config import settings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import PromptTemplate
+from braintrust import init_logger
+from braintrust import traced
+from braintrust_langchain import BraintrustCallbackHandler, set_global_handler
 # init_logger(project="My Project", api_key=settings.BRAINTRUST_API_KEY)
 
 # handler = BraintrustCallbackHandler()
@@ -107,9 +110,11 @@ def validate_guardrails(out: Suggesstion) -> None:
     if banned_hits:
         raise ValueError(f"Banned herbicide mentioned: {sorted(set(banned_hits))}")
 
+
 def get_suggestion(question:str, concern:str , image_url : str):
     
-    model = ChatOpenAI(model="gpt-5.1",api_key=settings.OPENAI_API_KEY)
+    model = ChatOpenAI(model="gpt-4.1",api_key=settings.OPENAI_API_KEY)
+    # guardrail_model = ChatOpenAI(model="gpt-4o",api_key=settings.OPENAI_API_KEY)
 
     # llm = ChatOpenAI(model="gpt-5.1", temperature=0, api_key=settings.OPENAI_API_KEY)
 
@@ -157,8 +162,6 @@ def get_suggestion(question:str, concern:str , image_url : str):
 
         output = Suggesstion(**revised.model_dump())
         validate_guardrails(output)
-
-
 
 
     return output.model_dump_json()

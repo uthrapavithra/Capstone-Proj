@@ -8,14 +8,15 @@ from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
 from fastapi.staticfiles import StaticFiles
 from typing import Annotated, Optional
-from db import get_db_session
-from file_storage import upload_file,image_to_data_url
+from database.db import get_db_session
+from imageStorage.file_storage import upload_file,image_to_data_url
 import psycopg
 from config import settings
-from models import AddQuery, User
+from database.models import AddQuery, User
 from pydantic import BaseModel, EmailStr, Field, field_validator
 from auth import AdminAuthzMiddleware, authenticate_user , AdminSessionMiddleware, delete_admin_session
-from ai import get_suggestion
+from weedIdentifier.weedIdentifier import get_suggestion
+from evaluation.llmtesting import evaluate_model
 from typing import Optional
 from fastapi import FastAPI, File, UploadFile, HTTPException, Query
 
@@ -23,8 +24,7 @@ app = FastAPI()
 app.add_middleware(AdminAuthzMiddleware)
 app.add_middleware(AdminSessionMiddleware)
 ##UPLOAD
-app.mount("/uploads", StaticFiles(directory="uploads/images"))
-
+app.mount("/imageStorage/uploads", StaticFiles(directory="imageStorage/uploads/images"))
 
 
 class IdentifyWeedForm(BaseModel):
@@ -35,17 +35,20 @@ class IdentifyWeedForm(BaseModel):
 ##identify weed and give suggestions
 
 @app.post("/api/identify-weed")
-async def identify_weed(
+async def identify_weed(background_tasks: BackgroundTasks,
     description: Annotated[str, Form()],
     concern: Annotated[str, Form()],
-    image: Annotated[Optional[UploadFile], File()] = None,):
+    image: Annotated[Optional[UploadFile], File()] = None,
+    ):
     print("inside fast api")
     image_url = None
+    image_name = None
 
     print(image)
 
     if image is not None:
         image_url = image_to_data_url(image)
+        image_name = str(image.filename)
         # image_contents = await image.read()
         # image_upload = upload_file("images",image.filename,image_contents,image.content_type)
     
@@ -55,9 +58,21 @@ async def identify_weed(
     res= json.loads(response)
 
     conf_score = round((res["confidence_score"]*100),1)
-    print(conf_score)
+   
 
     res["confidence_score"]=conf_score
+     
+    name = res["species_name"]
+    lifecycle_info = res["lifecycle_info"]
+    control_method = res["control_methods"]
+
+    generated_answer = str(name )+ str(lifecycle_info) + str(control_method)
+    if settings.PRODUCTION == False:
+        #print(description,image_url,generated_answer)
+        background_tasks.add_task(evaluate_model,description,image_url,generated_answer,image_name)
+
+        #evaluate_model(description,image_url,generated_answer)
+        
 
     result = json.dumps(res)
 

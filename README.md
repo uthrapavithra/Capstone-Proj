@@ -3,7 +3,7 @@
 ## Problem Statement
 
 Farmers frequently misidentify noxious weeds because many invasive species share similar traits. For example, bull thistle and musk thistle both present with purple flower 
-heads but diAer in lifecycle and bract structure. 
+heads but differ in lifecycle and bract structure. 
 
 Farmers would like help answering questions like: 
 
@@ -14,7 +14,7 @@ The backend will identify the species and retrieve the plant's lifecycle informa
 
 ## Overview
 
-The application follows a clean client–server architecture with a React-based frontend and a FastAPI backend. The frontend, built using React and React Router, is responsible for rendering user interfaces such as Home, Sign Up, Login, Weed Identifier, Past Queries, and Logout pages. It communicates with the backend exclusively through RESTful API calls over HTTP.
+The application follows a clean client–server architecture with a React-based frontend and a FastAPI backend. The frontend, built using React and React Router, is responsible for rendering user interfaces. It communicates with the backend exclusively through RESTful API calls over HTTP.
 
 The backend is implemented using FastAPI and runs on localhost. It acts as the central orchestration layer, handling request validation, authentication logic, business rules, and external API communication. User authentication actions such as signup, login, and logout are processed by FastAPI, which interacts with a PostgreSQL database to persist user details. Weed identification queries submitted by users are sent to the backend, which forwards the request to the OpenAI API (GPT-5.1) for intelligent analysis and response generation.
 
@@ -22,7 +22,7 @@ The generated answers, along with metadata such as confidence score, timestamp, 
 
 ## Architecture Diagram:
 
-![overall-architecture](overall-architecture.png)
+![overall-architecture](architecture.png)
 
 
 ## How to install and run the code:

@@ -13,13 +13,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Input } from "~/components/ui/input";
 import { userContext } from "~/context";
 
-export async function clientLoader({context}:ClientLoaderFunctionArgs) {
-  const me = context.get(userContext)
-  const isAdmin = me && me.is_admin
-  if (!isAdmin){
-    throw redirect("/home");
-  }
-}
 
 export async function clientAction({ request ,params }: Route.ClientActionArgs) {
   const incoming = await request.formData();
@@ -44,8 +37,8 @@ export async function clientAction({ request ,params }: Route.ClientActionArgs) 
   });
   const raw = await response.json();      
   const result = typeof raw === "string" ? JSON.parse(raw) : raw;
-  console.log("type:", typeof result);
-  console.log("res====",result.summary)
+  // console.log("type:", typeof result);
+  // console.log("res====",result.summary)
   if (!response.ok) {
     return {
       error: "Failed to identify plant. Please try again.",
@@ -63,7 +56,7 @@ export async function clientAction({ request ,params }: Route.ClientActionArgs) 
       formData.append("summary", String(result.summary));
     }
     const formvalues = Object.fromEntries(formData);
-    console.log("formm---",formvalues);
+    //console.log("formm---",formvalues);
     const res = await fetch(`/api/add-query/${params.username}`, {
     method: "POST",
     body: formData,
