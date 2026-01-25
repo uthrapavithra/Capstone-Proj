@@ -13,13 +13,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Input } from "~/components/ui/input";
 import { userContext } from "~/context";
 
-export async function clientLoader({context}:ClientLoaderFunctionArgs) {
-  const me = context.get(userContext)
-  const isAdmin = me && me.is_admin
-  if (!isAdmin){
-    throw redirect("/home");
-  }
-}
 
 export async function clientAction({ request ,params }: Route.ClientActionArgs) {
   const incoming = await request.formData();
