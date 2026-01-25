@@ -1,0 +1,175 @@
+Chapter:1 - Introduction to FDE
+ 1. What is FDE?
+ 2. FDE mindset
+ 3. Introduction to LLM
+    - What is GenAI?
+    - What is LLM ?
+    - History of LLM
+    - How LLM works?
+ 4. Introduction to prompt engineering
+    - Design patterns in Prompt engg - Role, Goal, Backstory
+    - Prompting techniques
+    - Prompt Chaining
+    - Risks in Prompt engg 
+    - Best Practices 
+ 5. Context engineering
+    - What is Context engineering
+    - Issues in Context engineering
+6. Introduction to Python
+    - Setup Python Environment
+    - Variables & datatypes
+    - Operations
+    - Conditions and Loops
+    - Functions
+    - Error handling
+    - File Operations
+    - Built-in modules
+    - API basics
+    - Introduction to FAST API
+    - numpy and pandas
+    - asycio - Asynchronous methods
+    
+7. Introduction to Git and Github
+
+
+Chapter 2: Backend
+1. Web Communication
+    - What is HTTP?
+    - HTTP methods
+    - HTTP status codes
+    - Web Client
+    - Web Server
+    - MIME types
+2. Using Fast API
+    - Use Fast API to write routes
+    - Pydantic models 
+    - Secrets management(.env)
+    - Fast API request and response models
+    - File upload
+    - Setup background tasks
+3. Accessing API routes
+    - Using Curl
+    - Using bruno
+4. Refactoring
+
+Chapter 3: Frontend
+1. Introduction to Html , CSS, JS
+    - Html 
+    - CSS
+      - TailwindCSS
+    - Dynamic webpages - JS
+    - Html + JinjaTemplates
+    - Html Forms
+       - Form handling in Fast API
+2. Introduction to ReactJS
+    - What is ReactJS
+    - Components
+    - Shadcn Components 
+    - React Hooks 
+      - useState , useRef , useContext , useEffect
+    - Client side vs server side rendering
+3. React router Framework
+    - Fast API Static file directory mount
+    - Vite proxy server setup
+    - Routes definition and types
+    - <Outlet> in react router
+    - ClientLoader , ClientAction Functions
+    - fetch and await
+    - array mapping
+
+Chapter 4 : Database
+1. Introduction to Database
+    - SQL vs NoSQL
+    - Entity Relationship
+    - Joins
+    - Normalisation , Denormalisation
+    - Indexes and Views
+2. SQLAlchemy
+3. Alembic - Schema migration
+
+Chapter 5: Authentication
+1. What is Authentication?
+    - Authentication vs Authorization
+2. Cookies for Authentication
+    - Using Fast API to validate cookies
+3. Middleware for Authentication
+4. Using Depends in Fast API for Authentication
+5. Password hashing and salting
+    - Bcrypt 
+
+Chapter 6 : Deployment
+1. Introduction to Linux
+2. Virtualization VS Containerization
+3. Introduction to Docker
+4. Introduction to Kubernetes 
+5. Basics on Cloud Computing
+6. CICD - Continuous Integration and Continuous Deployment
+    - Github actions
+
+Chapter 7: Machine Learning
+1. Introduction to ML and types
+2. Regression vs Classification
+3. Regression algorithms
+
+
+Chapter 8 : Generative AI
+1. Langchain
+    - Prompt templates
+    - Prompt Chaining
+    - Langchain - memory
+    - Chain of thoughts prompting
+    - Pydantic output parser
+2. Vector DB and Embeddings
+    - Introduction to Embeddings
+    - Embedding techniques
+    - Cosine similarity & Euclidean distance
+    - OpenAI Embeddings
+    - Introduction to VectorDB
+    - Query operations and MMR 
+    - Indexing in VectorDB
+3. RAG 
+    - What is RAG?
+    - RAG techniques
+        - Reranking
+        - HyDE
+        - Auto RAG
+        - Graph RAG
+    - Reliability in RAG 
+    - Chunking documents
+    - RAG text splitter
+    - Query refinement techniques
+    - Retriever finetuning
+    - RAG evaluation and different metrics used in RAGAS
+4. Grounding
+5. Guardrails
+    - Types of Guardrails 
+5. LLM Governance
+6. LLM security
+7. LLM evaluation
+    - Techniques in LLM Evaluation
+    - Different metrics used for LLM evals
+
+Chapter 9 : Agentic AI
+1. Introduction to Agents
+    - What is agents?
+    - Different frameworks used
+    - Agent design patterns
+    - What is MCP?
+    - Types and tools of MCP
+2. OpenAI Agent SDK
+    - Multi-agent system
+    - Handoff
+    - Agent as a tool
+
+
+Chapter 10 : LLM Ops 
+1. Tracing
+2. Prompt version management
+3. Model Evaluation and Testing
+4. Monitoring and Observability
+5. Tools and Services for LLM ops
+
+Chapter 11: Testing
+1. Pytest
+2. Python REPL
+3. Dependency Injection - Monkey Patching

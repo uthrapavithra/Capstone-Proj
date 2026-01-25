@@ -5,8 +5,8 @@ from config import settings
 from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi.responses import JSONResponse
 
-from db import get_db_session
-from models import User
+from database.db import get_db_session
+from database.models import User
 
 admin_sessions = {}
 

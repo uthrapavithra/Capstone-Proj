@@ -1,0 +1,149 @@
+
+# Full stack:
+
+### Backend:
+
+1. HTTP protocol
+How Internet Works
+https://www.youtube.com/watch?v=x3c1ih2NJEg
+HTTP - Overview
+https://developer.mozilla.org/en-US/docs/Web/HTTP
+HTTP Response Status Codes
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+
+2. Python 
+ - Basics - datatypes , loops and fuctions
+ - FAST API
+ - Pydantic
+ - Setup background tasks
+ - Server side routing
+
+
+
+### Frontend:
+1. HTML + Jinja2Templates
+2. HTML forms
+ - https://developer.mozilla.org/enUS/docs/Web/HTML/Reference/Elements/form
+3. React JS 
+ - setup vite-proxy server
+ - CORS
+ - CSS
+    - Shadcn
+    - TailwindCSS
+ - React Hooks
+    - useState , useRef , useContext , useEffect,
+ - Client side routing
+    - React router framework
+
+### Deploy app to cloud 
+ - using Render.com
+ https://render.com/docs/infrastructure-as-code
+
+### Database:
+ - SQL , NoSQL
+ - Entity relationship
+
+1. SQL Alchemy - to setup PostgreSQL DB
+
+2. Alembic - schema migration
+
+### Others
+
+1. File storage in local
+3. File storage in cloud - Supabase
+4. Middlewares - session authentications
+5. Using cookies for authentication
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies 
+
+### Continuous integration and Testing:
+ - Python REPL
+ - Github actions - CI
+ - Pytest
+ - Dependency Injection - Monkey Patching
+ 
+
+# AI and ML:
+
+1. **LLM:**
+ - Basics
+ - Building custom GPT in ChatGPT
+
+2. **Prompt engineering**
+ - Chain of thoughts
+ - Context engineering
+
+3. **Langchain**
+- LCEL - Langchain Expression language
+- Pydantic Output parser
+- Langchain - memory
+- Chain of thoughts prompting
+
+4. Function calling in OPENAI responses API - tool calling
+
+5. **Prompt chaining**
+ - Using Langchain
+ - using OpenAI responses API
+
+6. **RAG**
+ - RAG evaluation using RAGAS
+ - Advanced RAG techniques
+    - Reranking
+    - HyDE
+    - Auto RAG
+    - Graph RAG
+ - RAG text splitters
+
+7. **VectorDB**
+ - Embedding model
+ - Chunking documents
+ 
+8. Transformer based Embedding
+
+9. Cosine similarity
+https://www.youtube.com/watch?v=eKvbYOc2rOs
+
+10. Euclidean distance
+
+
+11. Guardrails and grounding
+
+12. Evaluation of LLM
+
+13. LLM Governance
+
+14. LLM security
+
+15. Open vs closed models
+
+16. MITM proxy - to see internal calls by LLM 
+
+17. **Agentic AI:**
+ - Agent design pattern
+ - MCP
+ - Open AI SDK Framework
+    - Multi-agent system
+    - Handoff
+    - Agent as a tool
+
+18. **LLM Ops:**
+    - Evaluation and testing 
+    - Moniotring and observability
+
+19. ML model basics:
+ - Linear regression
+
+Links:
+
+RAG:
+ https://cloud.google.com/use-cases/retrieval-augmented-generation
+• https://learn.microsoft.com/en-us/azure/ai-studio/concepts/retrieval-augmented-generation
+• https://www.linkedin.com/posts/jalammar_retrieval-augmented-generation-rag-which-activit
+y-7138683608713596928-zkM3
+• https://www.linkedin.com/posts/jalammar_the-next-generation-of-rag-applications-will-activit
+y-7133509039816155136-Q2Cz
+• https://weaviate.io/blog/rag-evaluation
+• https://medium.com/@himanshuit3036/day-2-understanding-core-components-of-rag-pipeli
+ne-71e4b8bf6466
+• https://www.pinecone.io/learn/series/rag/rerankers/
+
+

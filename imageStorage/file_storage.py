@@ -9,7 +9,7 @@ from typing import Optional
 
 from fastapi import FastAPI, File, UploadFile, HTTPException, Query
 
-UPLOAD_DIR = "uploads"
+UPLOAD_DIR = "imageStorage/uploads"
 
 
 # supabase: Client = create_client(str(settings.SUPABASE_URL), settings.SUPABASE_KEY)
